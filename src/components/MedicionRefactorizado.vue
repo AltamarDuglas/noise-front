@@ -54,8 +54,10 @@
         :creandoSesion="creandoSesion"
         :finalizandoSesion="finalizandoSesion"
         :sesionError="sesionError"
+        :sensitivity="sensitivity"
         @start="iniciarMedicion"
         @stop="detenerMedicion"
+        @update:sensitivity="sensitivity = $event"
       />
     </div>
 
@@ -125,6 +127,7 @@ const {
   conectado,
   nivel,
   color,
+  sensitivity,
   medicionActiva,
   sesionId,
   docente,
@@ -330,7 +333,7 @@ async function liberarRecursosDeAudio() {
 function medir() {
   if (!medicionActiva.value || !analyser || !dataArray) return
 
-  analyser.getByteFrequencyData(dataArray)
+  analyser.getByteFrequencyData(dataArray as Uint8Array<ArrayBuffer>)
   const promedio =
     dataArray.reduce((acc, item) => acc + item, 0) / dataArray.length
 

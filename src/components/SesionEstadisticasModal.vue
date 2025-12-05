@@ -201,8 +201,8 @@ function renderGrafico() {
             label: (context) => {
               const minuto = datos[context.dataIndex]
               return [
-                `Promedio: ${minuto.promedio.toFixed(1)} dB`,
-                `Mediciones: ${minuto.cantidad}`,
+                `Promedio: ${minuto?.promedio.toFixed(1) ?? 'N/A'} dB`,
+                `Mediciones: ${minuto?.cantidad ?? 0}`,
               ]
             },
           },

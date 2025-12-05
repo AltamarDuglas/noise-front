@@ -1137,7 +1137,7 @@ function renderDiasChart() {
 function medir() {
   if (!medicionActiva.value || !analyser || !dataArray) return
 
-  analyser.getByteFrequencyData(dataArray)
+  analyser.getByteFrequencyData(dataArray as Uint8Array<ArrayBuffer>)
   const promedio =
     dataArray.reduce((acc, item) => acc + item, 0) / dataArray.length
 
